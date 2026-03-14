@@ -37,9 +37,30 @@ TIER_ICONS = {
 }
 
 
+VALID_EVALUATOR_SCORES = {"0", "1", "1C", "1G", "1A", "2"}
+VALID_AXIS_RANGE = range(1, 4)  # 1, 2, 3
+
+
 def load_json(path: str) -> dict:
     with open(path) as f:
         return json.load(f)
+
+
+def _validate_evaluator_score(score: str, action_id: str) -> str:
+    if score not in VALID_EVALUATOR_SCORES:
+        raise ValueError(
+            f"Invalid score '{score}' for action '{action_id}'. "
+            f"Must be one of: {sorted(VALID_EVALUATOR_SCORES)}"
+        )
+    return score
+
+
+def _validate_axis(value: int, axis: str, action_id: str) -> int:
+    if not isinstance(value, int) or value not in VALID_AXIS_RANGE:
+        raise ValueError(
+            f"Invalid {axis}={value!r} for action '{action_id}'. Must be an integer 1, 2, or 3."
+        )
+    return value
 
 
 def build_evaluator(data: dict) -> EvaluatorEvaluation:
@@ -50,10 +71,11 @@ def build_evaluator(data: dict) -> EvaluatorEvaluation:
             name=domain_data["name"],
         )
         for action_data in domain_data["actions"]:
+            action_id = action_data["action_id"]
             domain.actions.append(EvaluatorAction(
-                action_id=action_data["action_id"],
+                action_id=action_id,
                 name=action_data["name"],
-                score=action_data["score"],
+                score=_validate_evaluator_score(action_data["score"], action_id),
             ))
         ev.add_domain(domain)
     return ev
@@ -67,12 +89,13 @@ def build_builder(data: dict) -> BuilderEvaluation:
             name=domain_data["name"],
         )
         for action_data in domain_data["actions"]:
+            action_id = action_data["action_id"]
             domain.actions.append(BuilderAction(
-                action_id=action_data["action_id"],
+                action_id=action_id,
                 name=action_data["name"],
-                T=action_data["T"],
-                C=action_data["C"],
-                I=action_data["I"],
+                T=_validate_axis(action_data["T"], "T", action_id),
+                C=_validate_axis(action_data["C"], "C", action_id),
+                I=_validate_axis(action_data["I"], "I", action_id),
             ))
         ev.add_domain(domain)
     return ev
@@ -198,7 +221,14 @@ def main():
     p_cmp.set_defaults(func=cmd_compare)
 
     args = parser.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except (KeyError, TypeError, ValueError) as exc:
+        print(f"\n  [ERROR] Invalid input: {exc}", file=sys.stderr)
+        sys.exit(1)
+    except FileNotFoundError as exc:
+        print(f"\n  [ERROR] File not found: {exc}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
