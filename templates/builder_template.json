@@ -1,0 +1,135 @@
+{
+  "name": "My Builder Evaluation",
+  "mode": "builder",
+  "_instructions": {
+    "T": "Trust/Decision Fidelity: 1=Enrichment (human-led), 2=Validated (human confirms), 3=Autonomous",
+    "C": "Complexity: 1=Low (simple API), 2=Medium (multi-step orchestration), 3=High (complex/custom)",
+    "I": "Impact/Blast Radius: 1=Low (tagging/enrichment), 2=Medium (temporary disruption), 3=High (prod/critical)"
+  },
+  "domains": {
+    "identity": {
+      "name": "Identity Response Plane",
+      "actions": [
+        {"action_id": "reset_password_std",       "name": "Reset Password (Standard)",    "T": 1, "C": 1, "I": 2},
+        {"action_id": "reset_password_vip",       "name": "Reset Password (VIP)",         "T": 1, "C": 1, "I": 3},
+        {"action_id": "revoke_sessions",          "name": "Revoke Sessions",              "T": 1, "C": 1, "I": 1},
+        {"action_id": "disable_user",             "name": "Disable User",                 "T": 1, "C": 1, "I": 2},
+        {"action_id": "disable_service_principal","name": "Disable Service Principals",   "T": 1, "C": 1, "I": 3},
+        {"action_id": "remove_permissions",       "name": "Remove Permissions",           "T": 1, "C": 1, "I": 3},
+        {"action_id": "group_adherence",          "name": "Group Adherence",              "T": 1, "C": 1, "I": 1},
+        {"action_id": "group_creation",           "name": "Group Creation",               "T": 1, "C": 1, "I": 2},
+        {"action_id": "token_rotation",           "name": "Token Rotation (Prod)",        "T": 1, "C": 1, "I": 3},
+        {"action_id": "delete_sharing_perms",     "name": "Delete Sharing Permissions",   "T": 1, "C": 1, "I": 2},
+        {"action_id": "label_user",               "name": "Label User (Tagging)",         "T": 1, "C": 1, "I": 1}
+      ]
+    },
+    "network": {
+      "name": "Network Response Plane",
+      "actions": [
+        {"action_id": "acl_creation",             "name": "ACL Creation",                 "T": 1, "C": 1, "I": 2},
+        {"action_id": "vlan_creation",            "name": "VLAN Creation",                "T": 1, "C": 1, "I": 2},
+        {"action_id": "firewall_rule_creation",   "name": "Firewall Rule Creation",       "T": 1, "C": 1, "I": 3},
+        {"action_id": "ips_rule_creation",        "name": "IPS Rule Creation",            "T": 1, "C": 1, "I": 3},
+        {"action_id": "network_connection_reset", "name": "Network Connection Reset",     "T": 1, "C": 1, "I": 1},
+        {"action_id": "dns_entry_change",         "name": "DNS Entry Change",             "T": 1, "C": 1, "I": 2},
+        {"action_id": "routing_table_change",     "name": "Routing Table Change",         "T": 1, "C": 1, "I": 3},
+        {"action_id": "sinkhole_traffic",         "name": "Sinkhole Traffic",             "T": 1, "C": 1, "I": 1},
+        {"action_id": "rate_limit_traffic",       "name": "Rate Limit Traffic",           "T": 1, "C": 1, "I": 1},
+        {"action_id": "vlan_modification",        "name": "VLAN Modification",            "T": 1, "C": 1, "I": 3},
+        {"action_id": "quarantine_device_net",    "name": "Quarantine Device",            "T": 1, "C": 1, "I": 2},
+        {"action_id": "quarantine_server",        "name": "Quarantine Server",            "T": 1, "C": 1, "I": 3},
+        {"action_id": "modify_nat_rules",         "name": "Modify NAT Rules",             "T": 1, "C": 1, "I": 2}
+      ]
+    },
+    "endpoint": {
+      "name": "Endpoint Response Plane",
+      "actions": [
+        {"action_id": "isolate_device",           "name": "Isolate Device",               "T": 1, "C": 1, "I": 3},
+        {"action_id": "initiate_malware_scan",    "name": "Initiate Malware Scan",        "T": 1, "C": 1, "I": 1},
+        {"action_id": "grab_file",               "name": "Grab File from Device",         "T": 1, "C": 1, "I": 1},
+        {"action_id": "submit_to_sandbox",        "name": "Submit File to Sandbox",       "T": 1, "C": 1, "I": 1},
+        {"action_id": "lock_out_user",            "name": "Lock Out User",                "T": 1, "C": 1, "I": 2},
+        {"action_id": "remove_user_from_device",  "name": "Remove User from Device",      "T": 1, "C": 1, "I": 3},
+        {"action_id": "delete_files",             "name": "Delete Files",                 "T": 1, "C": 1, "I": 2},
+        {"action_id": "kill_processes",           "name": "Kill Processes",               "T": 1, "C": 1, "I": 2},
+        {"action_id": "remove_application",       "name": "Remove Application",           "T": 1, "C": 1, "I": 3},
+        {"action_id": "remove_browser_ext",       "name": "Remove Browser Extension",     "T": 1, "C": 1, "I": 2},
+        {"action_id": "modify_browser_settings",  "name": "Modify Browser Settings",      "T": 1, "C": 1, "I": 2},
+        {"action_id": "remove_scheduled_task",    "name": "Remove Scheduled Task",        "T": 1, "C": 1, "I": 2},
+        {"action_id": "remove_startup_items",     "name": "Remove Startup Items",         "T": 1, "C": 1, "I": 2},
+        {"action_id": "remove_library",           "name": "Remove Library / Package",     "T": 1, "C": 1, "I": 3},
+        {"action_id": "upgrade_application",      "name": "Upgrade Application",          "T": 1, "C": 1, "I": 3},
+        {"action_id": "upgrade_os",               "name": "Upgrade OS",                   "T": 1, "C": 1, "I": 3},
+        {"action_id": "deploy_script",            "name": "Deploy Script",                "T": 1, "C": 1, "I": 3},
+        {"action_id": "modify_registry_key",      "name": "Modify Registry Key",          "T": 1, "C": 1, "I": 3},
+        {"action_id": "disable_service",          "name": "Disable Service",              "T": 1, "C": 1, "I": 2},
+        {"action_id": "collect_memory_dump",      "name": "Collect Memory Dump",          "T": 1, "C": 1, "I": 1},
+        {"action_id": "clear_browser_cache",      "name": "Clear Browser Cache",          "T": 1, "C": 1, "I": 1},
+        {"action_id": "remove_device_from_domain","name": "Remove Device from Domain",    "T": 1, "C": 1, "I": 3},
+        {"action_id": "block_file_hash",          "name": "Block File (via Hash)",        "T": 1, "C": 1, "I": 2}
+      ]
+    },
+    "cloud": {
+      "name": "Cloud Response Plane",
+      "actions": [
+        {"action_id": "modify_security_group",    "name": "Modify Security Group Rules",  "T": 1, "C": 1, "I": 2},
+        {"action_id": "create_security_group",    "name": "Create Security Group",        "T": 1, "C": 1, "I": 2},
+        {"action_id": "isolate_resource",         "name": "Isolate Resource",             "T": 1, "C": 1, "I": 3},
+        {"action_id": "modify_access_type",       "name": "Modify Access Type",           "T": 1, "C": 1, "I": 3},
+        {"action_id": "remove_resource_perms",    "name": "Remove Permissions to Resource","T": 1, "C": 1, "I": 2},
+        {"action_id": "delete_resource",          "name": "Delete Resource",              "T": 1, "C": 1, "I": 3},
+        {"action_id": "stop_resource",            "name": "Stop Resource",                "T": 1, "C": 1, "I": 2},
+        {"action_id": "modify_keyvault",          "name": "Modify KeyVault Entries",      "T": 1, "C": 1, "I": 3},
+        {"action_id": "use_breakglass",           "name": "Use Breakglass Account",       "T": 1, "C": 1, "I": 3},
+        {"action_id": "remove_files_storage",     "name": "Remove Files from Storage",    "T": 1, "C": 1, "I": 3},
+        {"action_id": "copy_storage_device",      "name": "Copy Storage Device",          "T": 1, "C": 1, "I": 2},
+        {"action_id": "mount_storage_device",     "name": "Mount Storage Device",         "T": 1, "C": 1, "I": 2},
+        {"action_id": "snapshot_vm",              "name": "Snapshot VM",                  "T": 1, "C": 1, "I": 1},
+        {"action_id": "enable_diagnostic",        "name": "Enable Diagnostic Settings",   "T": 1, "C": 1, "I": 1},
+        {"action_id": "apply_resource_lock",      "name": "Apply Resource Lock",          "T": 1, "C": 1, "I": 1}
+      ]
+    },
+    "saas": {
+      "name": "SaaS Response Plane",
+      "actions": [
+        {"action_id": "delete_email",             "name": "Delete Email",                 "T": 1, "C": 1, "I": 2},
+        {"action_id": "quarantine_email",         "name": "Quarantine Email",             "T": 1, "C": 1, "I": 1},
+        {"action_id": "create_routing_rules",     "name": "Create Routing Rules",         "T": 1, "C": 1, "I": 2},
+        {"action_id": "grab_email_sample",        "name": "Grab Email Sample",            "T": 1, "C": 1, "I": 1},
+        {"action_id": "grab_email_link",          "name": "Grab Email Link",              "T": 1, "C": 1, "I": 1},
+        {"action_id": "add_remove_meeting",       "name": "Add / Remove Meeting Invite",  "T": 1, "C": 1, "I": 1},
+        {"action_id": "read_modify_user_status",  "name": "Read / Modify User Status",    "T": 1, "C": 1, "I": 2},
+        {"action_id": "disable_inbox_rule",       "name": "Disable Malicious Inbox Rule", "T": 1, "C": 1, "I": 2},
+        {"action_id": "block_sender",             "name": "Block Sender",                 "T": 1, "C": 1, "I": 2},
+        {"action_id": "modify_hr_records",        "name": "Modify HR Records",            "T": 1, "C": 1, "I": 3}
+      ]
+    },
+    "general": {
+      "name": "General Options / Usability",
+      "actions": [
+        {"action_id": "close_alerts_siem",        "name": "Close Alerts in SIEM",         "T": 1, "C": 1, "I": 1},
+        {"action_id": "logging",                  "name": "Logging",                      "T": 1, "C": 1, "I": 1},
+        {"action_id": "reasoning_logging",        "name": "Reasoning Logging",            "T": 1, "C": 1, "I": 1},
+        {"action_id": "api_development",          "name": "API Development",              "T": 1, "C": 1, "I": 1},
+        {"action_id": "support_level",            "name": "Support Level",                "T": 1, "C": 1, "I": 1},
+        {"action_id": "account_management",       "name": "Account Management",           "T": 1, "C": 1, "I": 1},
+        {"action_id": "roles_rbac",               "name": "Roles and Responsibility",     "T": 1, "C": 1, "I": 1},
+        {"action_id": "ease_of_use",              "name": "Ease of Use (GUI)",            "T": 1, "C": 1, "I": 1},
+        {"action_id": "native_chat_integration",  "name": "Native Chat Integration",      "T": 1, "C": 1, "I": 1},
+        {"action_id": "alerting",                 "name": "Alerting",                     "T": 1, "C": 1, "I": 1},
+        {"action_id": "stats_dashboards",         "name": "Stats / Health Dashboards",    "T": 1, "C": 1, "I": 1},
+        {"action_id": "byom",                     "name": "Bring Your Own Model",         "T": 1, "C": 1, "I": 1},
+        {"action_id": "context_grounding",        "name": "Context Grounding",            "T": 1, "C": 1, "I": 1},
+        {"action_id": "autonomous_thresholds",    "name": "Autonomous Action Thresholds", "T": 1, "C": 1, "I": 1},
+        {"action_id": "investigation_audit",      "name": "Investigation Audit Trail",    "T": 1, "C": 1, "I": 1},
+        {"action_id": "ir_metrics",               "name": "IR Metrics Tracking",          "T": 1, "C": 1, "I": 1},
+        {"action_id": "feedback_loop",            "name": "Feedback Loop Mechanism",      "T": 1, "C": 1, "I": 1},
+        {"action_id": "auto_close_reversal",      "name": "Auto-Close Reversal Tracking", "T": 1, "C": 1, "I": 1},
+        {"action_id": "explainability",           "name": "Explainability",               "T": 1, "C": 1, "I": 1},
+        {"action_id": "ai_accuracy_reporting",    "name": "AI Decision Accuracy Reporting","T": 1, "C": 1, "I": 1},
+        {"action_id": "model_drift",              "name": "Model Drift Detection",        "T": 1, "C": 1, "I": 1},
+        {"action_id": "adversarial_robustness",   "name": "Adversarial Robustness Testing","T": 1, "C": 1, "I": 1}
+      ]
+    }
+  }
+}

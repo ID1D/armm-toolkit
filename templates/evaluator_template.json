@@ -1,0 +1,131 @@
+{
+  "name": "My Product Evaluation",
+  "mode": "evaluator",
+  "_instructions": "Score each action: 0=not available, 1C=collaborator, 1G=guide, 1A=approver, 2=fully automated",
+  "domains": {
+    "identity": {
+      "name": "Identity Response Plane",
+      "actions": [
+        {"action_id": "reset_password_std",       "name": "Reset Password (Standard)",    "score": "0"},
+        {"action_id": "reset_password_vip",       "name": "Reset Password (VIP)",         "score": "0"},
+        {"action_id": "revoke_sessions",          "name": "Revoke Sessions",              "score": "0"},
+        {"action_id": "disable_user",             "name": "Disable User",                 "score": "0"},
+        {"action_id": "disable_service_principal","name": "Disable Service Principals",   "score": "0"},
+        {"action_id": "remove_permissions",       "name": "Remove Permissions",           "score": "0"},
+        {"action_id": "group_adherence",          "name": "Group Adherence",              "score": "0"},
+        {"action_id": "group_creation",           "name": "Group Creation",               "score": "0"},
+        {"action_id": "token_rotation",           "name": "Token Rotation (Prod)",        "score": "0"},
+        {"action_id": "delete_sharing_perms",     "name": "Delete Sharing Permissions",   "score": "0"},
+        {"action_id": "label_user",               "name": "Label User (Tagging)",         "score": "0"}
+      ]
+    },
+    "network": {
+      "name": "Network Response Plane",
+      "actions": [
+        {"action_id": "acl_creation",             "name": "ACL Creation",                 "score": "0"},
+        {"action_id": "vlan_creation",            "name": "VLAN Creation",                "score": "0"},
+        {"action_id": "firewall_rule_creation",   "name": "Firewall Rule Creation",       "score": "0"},
+        {"action_id": "ips_rule_creation",        "name": "IPS Rule Creation",            "score": "0"},
+        {"action_id": "network_connection_reset", "name": "Network Connection Reset",     "score": "0"},
+        {"action_id": "dns_entry_change",         "name": "DNS Entry Change",             "score": "0"},
+        {"action_id": "routing_table_change",     "name": "Routing Table Change",         "score": "0"},
+        {"action_id": "sinkhole_traffic",         "name": "Sinkhole Traffic",             "score": "0"},
+        {"action_id": "rate_limit_traffic",       "name": "Rate Limit Traffic",           "score": "0"},
+        {"action_id": "vlan_modification",        "name": "VLAN Modification",            "score": "0"},
+        {"action_id": "quarantine_device_net",    "name": "Quarantine Device",            "score": "0"},
+        {"action_id": "quarantine_server",        "name": "Quarantine Server",            "score": "0"},
+        {"action_id": "modify_nat_rules",         "name": "Modify NAT Rules",             "score": "0"}
+      ]
+    },
+    "endpoint": {
+      "name": "Endpoint Response Plane",
+      "actions": [
+        {"action_id": "isolate_device",           "name": "Isolate Device",               "score": "0"},
+        {"action_id": "initiate_malware_scan",    "name": "Initiate Malware Scan",        "score": "0"},
+        {"action_id": "grab_file",               "name": "Grab File from Device",         "score": "0"},
+        {"action_id": "submit_to_sandbox",        "name": "Submit File to Sandbox",       "score": "0"},
+        {"action_id": "lock_out_user",            "name": "Lock Out User",                "score": "0"},
+        {"action_id": "remove_user_from_device",  "name": "Remove User from Device",      "score": "0"},
+        {"action_id": "delete_files",             "name": "Delete Files",                 "score": "0"},
+        {"action_id": "kill_processes",           "name": "Kill Processes",               "score": "0"},
+        {"action_id": "remove_application",       "name": "Remove Application",           "score": "0"},
+        {"action_id": "remove_browser_ext",       "name": "Remove Browser Extension",     "score": "0"},
+        {"action_id": "modify_browser_settings",  "name": "Modify Browser Settings",      "score": "0"},
+        {"action_id": "remove_scheduled_task",    "name": "Remove Scheduled Task",        "score": "0"},
+        {"action_id": "remove_startup_items",     "name": "Remove Startup Items",         "score": "0"},
+        {"action_id": "remove_library",           "name": "Remove Library / Package",     "score": "0"},
+        {"action_id": "upgrade_application",      "name": "Upgrade Application",          "score": "0"},
+        {"action_id": "upgrade_os",               "name": "Upgrade OS",                   "score": "0"},
+        {"action_id": "deploy_script",            "name": "Deploy Script",                "score": "0"},
+        {"action_id": "modify_registry_key",      "name": "Modify Registry Key",          "score": "0"},
+        {"action_id": "disable_service",          "name": "Disable Service",              "score": "0"},
+        {"action_id": "collect_memory_dump",      "name": "Collect Memory Dump",          "score": "0"},
+        {"action_id": "clear_browser_cache",      "name": "Clear Browser Cache",          "score": "0"},
+        {"action_id": "remove_device_from_domain","name": "Remove Device from Domain",    "score": "0"},
+        {"action_id": "block_file_hash",          "name": "Block File (via Hash)",        "score": "0"}
+      ]
+    },
+    "cloud": {
+      "name": "Cloud Response Plane",
+      "actions": [
+        {"action_id": "modify_security_group",    "name": "Modify Security Group Rules",  "score": "0"},
+        {"action_id": "create_security_group",    "name": "Create Security Group",        "score": "0"},
+        {"action_id": "isolate_resource",         "name": "Isolate Resource",             "score": "0"},
+        {"action_id": "modify_access_type",       "name": "Modify Access Type",           "score": "0"},
+        {"action_id": "remove_resource_perms",    "name": "Remove Permissions to Resource","score": "0"},
+        {"action_id": "delete_resource",          "name": "Delete Resource",              "score": "0"},
+        {"action_id": "stop_resource",            "name": "Stop Resource",                "score": "0"},
+        {"action_id": "modify_keyvault",          "name": "Modify KeyVault Entries",      "score": "0"},
+        {"action_id": "use_breakglass",           "name": "Use Breakglass Account",       "score": "0"},
+        {"action_id": "remove_files_storage",     "name": "Remove Files from Storage",    "score": "0"},
+        {"action_id": "copy_storage_device",      "name": "Copy Storage Device",          "score": "0"},
+        {"action_id": "mount_storage_device",     "name": "Mount Storage Device",         "score": "0"},
+        {"action_id": "snapshot_vm",              "name": "Snapshot VM",                  "score": "0"},
+        {"action_id": "enable_diagnostic",        "name": "Enable Diagnostic Settings",   "score": "0"},
+        {"action_id": "apply_resource_lock",      "name": "Apply Resource Lock",          "score": "0"}
+      ]
+    },
+    "saas": {
+      "name": "SaaS Response Plane",
+      "actions": [
+        {"action_id": "delete_email",             "name": "Delete Email",                 "score": "0"},
+        {"action_id": "quarantine_email",         "name": "Quarantine Email",             "score": "0"},
+        {"action_id": "create_routing_rules",     "name": "Create Routing Rules",         "score": "0"},
+        {"action_id": "grab_email_sample",        "name": "Grab Email Sample",            "score": "0"},
+        {"action_id": "grab_email_link",          "name": "Grab Email Link",              "score": "0"},
+        {"action_id": "add_remove_meeting",       "name": "Add / Remove Meeting Invite",  "score": "0"},
+        {"action_id": "read_modify_user_status",  "name": "Read / Modify User Status",    "score": "0"},
+        {"action_id": "disable_inbox_rule",       "name": "Disable Malicious Inbox Rule", "score": "0"},
+        {"action_id": "block_sender",             "name": "Block Sender",                 "score": "0"},
+        {"action_id": "modify_hr_records",        "name": "Modify HR Records",            "score": "0"}
+      ]
+    },
+    "general": {
+      "name": "General Options / Usability",
+      "actions": [
+        {"action_id": "close_alerts_siem",        "name": "Close Alerts in SIEM",         "score": "0"},
+        {"action_id": "logging",                  "name": "Logging",                      "score": "0"},
+        {"action_id": "reasoning_logging",        "name": "Reasoning Logging",            "score": "0"},
+        {"action_id": "api_development",          "name": "API Development",              "score": "0"},
+        {"action_id": "support_level",            "name": "Support Level",                "score": "0"},
+        {"action_id": "account_management",       "name": "Account Management",           "score": "0"},
+        {"action_id": "roles_rbac",               "name": "Roles and Responsibility",     "score": "0"},
+        {"action_id": "ease_of_use",              "name": "Ease of Use (GUI)",            "score": "0"},
+        {"action_id": "native_chat_integration",  "name": "Native Chat Integration",      "score": "0"},
+        {"action_id": "alerting",                 "name": "Alerting",                     "score": "0"},
+        {"action_id": "stats_dashboards",         "name": "Stats / Health Dashboards",    "score": "0"},
+        {"action_id": "byom",                     "name": "Bring Your Own Model",         "score": "0"},
+        {"action_id": "context_grounding",        "name": "Context Grounding",            "score": "0"},
+        {"action_id": "autonomous_thresholds",    "name": "Autonomous Action Thresholds", "score": "0"},
+        {"action_id": "investigation_audit",      "name": "Investigation Audit Trail",    "score": "0"},
+        {"action_id": "ir_metrics",               "name": "IR Metrics Tracking",          "score": "0"},
+        {"action_id": "feedback_loop",            "name": "Feedback Loop Mechanism",      "score": "0"},
+        {"action_id": "auto_close_reversal",      "name": "Auto-Close Reversal Tracking", "score": "0"},
+        {"action_id": "explainability",           "name": "Explainability",               "score": "0"},
+        {"action_id": "ai_accuracy_reporting",    "name": "AI Decision Accuracy Reporting","score": "0"},
+        {"action_id": "model_drift",              "name": "Model Drift Detection",        "score": "0"},
+        {"action_id": "adversarial_robustness",   "name": "Adversarial Robustness Testing","score": "0"}
+      ]
+    }
+  }
+}

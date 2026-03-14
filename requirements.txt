@@ -1,0 +1,2 @@
+# ARMM Toolkit — no external dependencies required
+# Pure Python 3.8+ standard library only

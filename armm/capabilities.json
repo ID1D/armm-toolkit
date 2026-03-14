@@ -1,0 +1,134 @@
+{
+  "version": "0.1",
+  "domains": {
+    "identity": {
+      "name": "Identity Response Plane",
+      "actions": [
+        {"id": "reset_password_std",      "name": "Reset Password (Standard)",    "description": "Reset a standard user password",                                       "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "reset_password_vip",      "name": "Reset Password (VIP)",         "description": "Reset a VIP or privileged user password",                              "ref": {"T": 3, "C": 2, "I": 3}},
+        {"id": "revoke_sessions",         "name": "Revoke Sessions",              "description": "Terminate all active sessions for a user account",                     "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "disable_user",            "name": "Disable User",                 "description": "Disable a standard user account",                                      "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "disable_service_principal","name": "Disable Service Principals",  "description": "Disable a service account, service principal, or managed identity",   "ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "remove_permissions",      "name": "Remove Permissions",           "description": "Remove a specific set of permissions from an account",                 "ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "group_adherence",         "name": "Group Adherence",              "description": "Add or remove an account from a security group",                       "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "group_creation",          "name": "Group Creation",               "description": "Create a new security group",                                          "ref": {"T": 3, "C": 2, "I": 2}},
+        {"id": "token_rotation",          "name": "Token Rotation (Prod)",        "description": "Create or rotate secrets and tokens in production",                    "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "delete_sharing_perms",    "name": "Delete Sharing Permissions",   "description": "Remove sharing permissions on resources",                              "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "label_user",              "name": "Label User (Tagging)",         "description": "Apply a tag or label to a user account for tracking",                 "ref": {"T": 3, "C": 1, "I": 1}}
+      ]
+    },
+    "network": {
+      "name": "Network Response Plane",
+      "actions": [
+        {"id": "acl_creation",            "name": "ACL Creation",                 "description": "Create a new access control list on the network",                     "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "vlan_creation",           "name": "VLAN Creation",                "description": "Create a new VLAN on the network",                                    "ref": {"T": 3, "C": 2, "I": 2}},
+        {"id": "firewall_rule_creation",  "name": "Firewall Rule Creation",       "description": "Create a new firewall rule",                                          "ref": {"T": 2, "C": 1, "I": 3}},
+        {"id": "ips_rule_creation",       "name": "IPS Rule Creation",            "description": "Create a new IPS rule in deny mode",                                  "ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "network_connection_reset","name": "Network Connection Reset",     "description": "Reset a network connection",                                          "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "dns_entry_change",        "name": "DNS Entry Change",             "description": "Modify an entry in the DNS records",                                  "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "routing_table_change",    "name": "Routing Table Change",         "description": "Modify a routing entry",                                              "ref": {"T": 3, "C": 3, "I": 3}},
+        {"id": "sinkhole_traffic",        "name": "Sinkhole Traffic",             "description": "Redirect traffic to a sinkhole",                                      "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "rate_limit_traffic",      "name": "Rate Limit Traffic",           "description": "Limit traffic by a particular indicator",                             "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "vlan_modification",       "name": "VLAN Modification",            "description": "Move a device to a restricted VLAN",                                  "ref": {"T": 3, "C": 2, "I": 3}},
+        {"id": "quarantine_device_net",   "name": "Quarantine Device",            "description": "Quarantine a device at the network level",                            "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "quarantine_server",       "name": "Quarantine Server",            "description": "Quarantine a server running an enterprise-level service",             "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "modify_nat_rules",        "name": "Modify NAT Rules",             "description": "Change NAT rules to modify traffic patterns",                         "ref": {"T": 2, "C": 2, "I": 2}}
+      ]
+    },
+    "endpoint": {
+      "name": "Endpoint Response Plane",
+      "actions": [
+        {"id": "isolate_device",          "name": "Isolate Device",               "description": "Isolate a device from all network connectivity",                      "ref": {"T": 3, "C": 2, "I": 3}},
+        {"id": "initiate_malware_scan",   "name": "Initiate Malware Scan",        "description": "Start a scan on the device",                                         "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "grab_file",              "name": "Grab File from Device",         "description": "Upload a file to a designated container",                             "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "submit_to_sandbox",       "name": "Submit File to Sandbox",       "description": "Submit a file for sandbox analysis",                                  "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "lock_out_user",           "name": "Lock Out User",                "description": "Lock a user out of the device",                                      "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "remove_user_from_device", "name": "Remove User from Device",      "description": "Remove a user account from the device",                              "ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "delete_files",            "name": "Delete Files",                 "description": "Delete specific files from the device",                              "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "kill_processes",          "name": "Kill Processes",               "description": "Terminate a running process",                                        "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "remove_application",      "name": "Remove Application",           "description": "Uninstall an application",                                           "ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "remove_browser_ext",      "name": "Remove Browser Extension",     "description": "Remove a browser extension",                                         "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "modify_browser_settings", "name": "Modify Browser Settings",      "description": "Set, modify, or replace browser security parameters",                "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "remove_scheduled_task",   "name": "Remove Scheduled Task",        "description": "Remove a cron entry or scheduled task",                              "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "remove_startup_items",    "name": "Remove Startup Items",         "description": "Remove a process, agent, or file from system startup",               "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "remove_library",          "name": "Remove Library / Package",     "description": "Remove a library from a development environment",                    "ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "upgrade_application",     "name": "Upgrade Application",          "description": "Force an automatic update on installed software",                    "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "upgrade_os",              "name": "Upgrade OS",                   "description": "Force an automatic OS update",                                       "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "deploy_script",           "name": "Deploy Script",                "description": "Deploy a script or application needed for remediation",              "ref": {"T": 3, "C": 3, "I": 3}},
+        {"id": "modify_registry_key",     "name": "Modify Registry Key",          "description": "Change a value or create a new registry key",                       "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "disable_service",         "name": "Disable Service",              "description": "Change the status of or remove a service",                          "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "collect_memory_dump",     "name": "Collect Memory Dump",          "description": "Initiate and retrieve a memory dump forensically",                  "ref": {"T": 2, "C": 2, "I": 1}},
+        {"id": "clear_browser_cache",     "name": "Clear Browser Cache",          "description": "Remove all files, cookies, and data from the browser cache",        "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "remove_device_from_domain","name": "Remove Device from Domain",   "description": "Remove a device from the domain",                                   "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "block_file_hash",         "name": "Block File (via Hash)",        "description": "Block execution of a file by its hash",                             "ref": {"T": 3, "C": 1, "I": 2}}
+      ]
+    },
+    "cloud": {
+      "name": "Cloud Response Plane",
+      "actions": [
+        {"id": "modify_security_group",   "name": "Modify Security Group Rules",  "description": "Modify firewall rules on a cloud resource to restrict access",      "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "create_security_group",   "name": "Create Security Group",        "description": "Create a new security group and apply it to restrict traffic",      "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "isolate_resource",        "name": "Isolate Resource",             "description": "Quarantine a cloud resource so it is unreachable",                  "ref": {"T": 3, "C": 2, "I": 3}},
+        {"id": "modify_access_type",      "name": "Modify Access Type",           "description": "Switch a resource from public to private or restrict anonymous access","ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "remove_resource_perms",   "name": "Remove Permissions to Resource","description": "Remove a service principal or managed identity from a resource",   "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "delete_resource",         "name": "Delete Resource",              "description": "Delete a resource from the cloud environment",                      "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "stop_resource",           "name": "Stop Resource",                "description": "Stop a resource from execution",                                    "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "modify_keyvault",         "name": "Modify KeyVault Entries",      "description": "Add or modify resources in a KeyVault",                             "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "use_breakglass",          "name": "Use Breakglass Account",       "description": "Use a breakglass account in case of emergency",                     "ref": {"T": 2, "C": 3, "I": 3}},
+        {"id": "remove_files_storage",    "name": "Remove Files from Storage",    "description": "Remove files from a storage bucket or storage account",             "ref": {"T": 2, "C": 2, "I": 3}},
+        {"id": "copy_storage_device",     "name": "Copy Storage Device",          "description": "Create a copy of a cloud storage resource for forensic investigation","ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "mount_storage_device",    "name": "Mount Storage Device",         "description": "Mount a new storage capability to a VM for forensic investigation", "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "snapshot_vm",             "name": "Snapshot VM",                  "description": "Create a snapshot of the current state of a virtual machine",      "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "enable_diagnostic",       "name": "Enable Diagnostic Settings",   "description": "Alter settings that enable advanced log gathering",                 "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "apply_resource_lock",     "name": "Apply Resource Lock",          "description": "Make the resource immutable or read-only",                         "ref": {"T": 3, "C": 1, "I": 1}}
+      ]
+    },
+    "saas": {
+      "name": "SaaS Response Plane",
+      "actions": [
+        {"id": "delete_email",            "name": "Delete Email",                 "description": "Remove an email from a user mailbox",                               "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "quarantine_email",        "name": "Quarantine Email",             "description": "Move an email to the user quarantine or junk box",                 "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "create_routing_rules",    "name": "Create Routing Rules",         "description": "Create rules to handle and route incoming email",                  "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "grab_email_sample",       "name": "Grab Email Sample",            "description": "Extract an attached file from an email",                           "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "grab_email_link",         "name": "Grab Email Link",              "description": "Extract a link from inside an email message",                      "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "add_remove_meeting",      "name": "Add / Remove Meeting Invite",  "description": "Modify a user calendar",                                           "ref": {"T": 3, "C": 1, "I": 1}},
+        {"id": "read_modify_user_status", "name": "Read / Modify User Status",    "description": "Read or change a user status in the HR platform",                  "ref": {"T": 2, "C": 2, "I": 2}},
+        {"id": "disable_inbox_rule",      "name": "Disable Malicious Inbox Rule", "description": "Disable a rule created by a malicious actor from a user mailbox",  "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "block_sender",            "name": "Block Sender",                 "description": "Block a sender from the domain",                                   "ref": {"T": 3, "C": 1, "I": 2}},
+        {"id": "modify_hr_records",       "name": "Modify HR Records",            "description": "Modify HR records beyond status",                                  "ref": {"T": 2, "C": 3, "I": 3}}
+      ]
+    },
+    "general": {
+      "name": "General Options / Usability",
+      "scoring_note": "0 = not available, 1 = available but limited, 2 = fully available and functional",
+      "subcategories": {
+        "platform_operations": [
+          {"id": "close_alerts_siem",       "name": "Close Alerts in SIEM",          "description": "Can close alerts in all major SIEM solutions"},
+          {"id": "logging",                 "name": "Logging",                        "description": "Platform logging allows identification of all actions taken"},
+          {"id": "reasoning_logging",       "name": "Reasoning Logging",              "description": "Reasoning steps are logged at sufficient detail"},
+          {"id": "api_development",         "name": "API Development",                "description": "API is robust enough for integration with other security tools"},
+          {"id": "support_level",           "name": "Support Level",                  "description": "Support is responsive and allows for adequate issue resolution"},
+          {"id": "account_management",      "name": "Account Management",             "description": "Account management is straightforward with SSO integration"},
+          {"id": "roles_rbac",              "name": "Roles and Responsibility (RBAC)","description": "Role-based access control with sufficient granularity"},
+          {"id": "ease_of_use",             "name": "Ease of Use (GUI)",              "description": "GUI is navigable and intuitive"},
+          {"id": "native_chat_integration", "name": "Native Chat Integration",        "description": "Native integration with major communication platforms"},
+          {"id": "alerting",                "name": "Alerting",                       "description": "Automatic alerting on platform or analysis-level issues"},
+          {"id": "stats_dashboards",        "name": "Stats / Health Dashboards",      "description": "Dashboards showing current platform status and performance"}
+        ],
+        "ai_specific": [
+          {"id": "byom",                    "name": "Bring Your Own Model",           "description": "Ability to integrate custom models into the platform"},
+          {"id": "context_grounding",       "name": "Context Grounding",              "description": "Ability to bring organizational data to feed into the model"},
+          {"id": "autonomous_thresholds",   "name": "Autonomous Action Thresholds",   "description": "Platform allows setting confidence thresholds for autonomous execution"},
+          {"id": "investigation_audit",     "name": "Investigation Audit Trail",      "description": "Complete exportable record of every action with timestamps"},
+          {"id": "ir_metrics",              "name": "IR Metrics Tracking",            "description": "Native tracking of MTTD, MTTA, MTTT, MTTI, MTTR"},
+          {"id": "feedback_loop",           "name": "Feedback Loop Mechanism",        "description": "Analysts can confirm, reject, or correct AI decisions"},
+          {"id": "auto_close_reversal",     "name": "Auto-Close Reversal Tracking",   "description": "Tracks rate at which auto-closed alerts are reopened"},
+          {"id": "explainability",          "name": "Explainability / Decision Transparency","description": "AI provides clear traceable reasoning for every decision"},
+          {"id": "ai_accuracy_reporting",   "name": "AI Decision Accuracy Reporting", "description": "Tracks TP accuracy, FP accuracy, and confidence scores"},
+          {"id": "model_drift",             "name": "Model Drift Detection",          "description": "Monitors AI model performance and alerts when accuracy degrades"},
+          {"id": "adversarial_robustness",  "name": "Adversarial Robustness Testing", "description": "Supports or integrates with red team exercises to test AI resilience"}
+        ]
+      }
+    }
+  }
+}
