@@ -18,7 +18,7 @@ from pathlib import Path
 from .scorer import (
     BuilderAction, BuilderDomain, BuilderEvaluation,
     EvaluatorAction, EvaluatorDomain, EvaluatorEvaluation,
-    ARMMScorer, TIER_ORDER,
+    ARMMScorer,
 )
 
 BANNER = """
@@ -151,6 +151,11 @@ def print_comparison(rows: list[dict]):
         print()
 
 
+def _save_report(report: dict, path: str) -> None:
+    Path(path).write_text(json.dumps(report, indent=2))
+    print(f"\n  Saved to {path}")
+
+
 def cmd_evaluator(args):
     data = load_json(args.input)
     ev = build_evaluator(data)
@@ -160,8 +165,7 @@ def cmd_evaluator(args):
     else:
         print_evaluator_report(report)
     if args.output:
-        Path(args.output).write_text(json.dumps(report, indent=2))
-        print(f"\n  Saved to {args.output}")
+        _save_report(report, args.output)
 
 
 def cmd_builder(args):
@@ -173,8 +177,7 @@ def cmd_builder(args):
     else:
         print_builder_report(report)
     if args.output:
-        Path(args.output).write_text(json.dumps(report, indent=2))
-        print(f"\n  Saved to {args.output}")
+        _save_report(report, args.output)
 
 
 def cmd_compare(args):

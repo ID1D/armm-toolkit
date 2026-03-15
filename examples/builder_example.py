@@ -14,6 +14,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from armm.scorer import BuilderAction, BuilderDomain, BuilderEvaluation
 
+TIER_ICONS = {"Explorer": "[Explorer]", "Entry": "[Entry]", "Advanced": "[Advanced]", "Expert": "[Expert]"}
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Scenario: Three organizations evaluating the same AI SOC product,
 # scoring the Identity Response Plane with their own context.
@@ -78,18 +80,18 @@ def build_org_evaluation(name: str, identity_actions: list) -> BuilderEvaluation
 
 def print_builder_report(ev: BuilderEvaluation):
     r = ev.report()
-    tier_icons = {"Explorer": "[Explorer]", "Entry": "[Entry]", "Advanced": "[Advanced]", "Expert": "[Expert]"}
+
     print(f"\n{'='*65}")
     print(f"  {r['evaluation_name']}")
     print(f"  Program Score : {r['program_score']:.2f}/9.00   "
-          f"Composite: {tier_icons.get(r['composite_tier'], '')} {r['composite_tier']}")
+          f"Composite: {TIER_ICONS.get(r['composite_tier'], '')} {r['composite_tier']}")
     print()
     for d in r["domains"].values():
         print(f"  {d['name']}")
         print(f"  {'Action':<35} {'T':>3} {'C':>3} {'I':>3} {'Score':>6} {'Tier'}")
         print(f"  {'-'*60}")
         for a in d["actions"]:
-            icon = tier_icons.get(a["tier"], "")
+            icon = TIER_ICONS.get(a["tier"], "")
             print(
                 f"  {a['name']:<35} {a['T']:>3} {a['C']:>3} {a['I']:>3} "
                 f"{a['score']:>6}  {icon} {a['tier']}"
@@ -119,9 +121,9 @@ if __name__ == "__main__":
         (org_b.name, org_b.domains["identity"].domain_score, org_b.domains["identity"].tier),
         (org_c.name, org_c.domains["identity"].domain_score, org_c.domains["identity"].tier),
     ]
-    tier_icons = {"Explorer": "[Explorer]", "Entry": "[Entry]", "Advanced": "[Advanced]", "Expert": "[Expert]"}
+
     for name, score, tier in scores:
-        print(f"  {name}: {score:.2f} -> {tier_icons.get(tier, '')} {tier}")
+        print(f"  {name}: {score:.2f} -> {TIER_ICONS.get(tier, '')} {tier}")
     print()
     print("  The product capability is identical. The score reflects organizational reality.")
     print("  Builder Mode answers: 'Where should MY team invest to move up the maturity ladder?'")

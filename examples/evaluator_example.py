@@ -7,15 +7,14 @@ products on the 0/1C/1G/1A/2 scale.
 Framework by Andrei Cotaie, Cristian Miron & Filip Stojkovski
 """
 
-import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from armm.scorer import (
-    EvaluatorAction, EvaluatorDomain, EvaluatorEvaluation, ARMMScorer
-)
+from armm.scorer import EvaluatorAction, EvaluatorDomain, EvaluatorEvaluation
+
+TIER_ICONS = {"Explorer": "[Explorer]", "Entry": "[Entry]", "Advanced": "[Advanced]", "Expert": "[Expert]"}
 
 # ── Product A: "BrainBox AI" - Strong analysis, weak execution ───────────────
 
@@ -253,15 +252,14 @@ product_b.add_domain(EvaluatorDomain("general", "General Options / Usability", a
 
 def print_report(ev: EvaluatorEvaluation):
     r = ev.report()
-    tier_icons = {"Explorer": "[Explorer]", "Entry": "[Entry]", "Advanced": "[Advanced]", "Expert": "[Expert]"}
     print(f"\n{'='*60}")
     print(f"  {r['evaluation_name']}")
-    print(f"  Composite : {tier_icons.get(r['composite_tier'], '')} {r['composite_tier']}")
+    print(f"  Composite : {TIER_ICONS.get(r['composite_tier'], '')} {r['composite_tier']}")
     print(f"  Score     : {r['overall_score_pct']}%  Coverage: {r['overall_coverage_pct']}%  Automation: {r['overall_automation_pct']}%")
     print(f"  {'Domain':<30} {'Coverage':>9} {'Auto':>6} {'Tier'}")
     print(f"  {'-'*55}")
     for d in r["domains"].values():
-        icon = tier_icons.get(d["tier"], "")
+        icon = TIER_ICONS.get(d["tier"], "")
         print(f"  {d['name']:<30} {d['coverage_rate_pct']:>7.1f}%  {d['automation_rate_pct']:>4.1f}%  {icon} {d['tier']}")
 
 

@@ -40,6 +40,23 @@ def score_to_tier(score: float) -> str:
     return "Unscored"
 
 
+def _compute_composite_tier(domain_tiers: list[str]) -> str:
+    """
+    Sequential gating: highest tier where >= 4 of 6 planes qualify,
+    with unbroken chain from Explorer upward.
+    Shared by BuilderEvaluation and EvaluatorEvaluation.
+    """
+    composite = "Explorer"
+    for tier in TIER_ORDER:
+        tier_idx = TIER_ORDER.index(tier)
+        qualifying = sum(1 for t in domain_tiers if TIER_ORDER.index(t) >= tier_idx)
+        if qualifying >= 4:
+            composite = tier
+        else:
+            break
+    return composite
+
+
 # ── Builder Mode ─────────────────────────────────────────────────────────────
 
 @dataclass
@@ -115,23 +132,7 @@ class BuilderEvaluation:
 
     @property
     def composite_tier(self) -> str:
-        """
-        Sequential gating: highest tier where >= 4 of 6 planes qualify,
-        with unbroken chain from Explorer upward.
-        """
-        domain_tiers = [d.tier for d in self.domains.values()]
-        composite = "Explorer"
-        for tier in TIER_ORDER:
-            tier_idx = TIER_ORDER.index(tier)
-            qualifying = sum(
-                1 for t in domain_tiers
-                if TIER_ORDER.index(t) >= tier_idx
-            )
-            if qualifying >= 4:
-                composite = tier
-            else:
-                break
-        return composite
+        return _compute_composite_tier([d.tier for d in self.domains.values()])
 
     def report(self) -> dict:
         return {
@@ -273,19 +274,7 @@ class EvaluatorEvaluation:
 
     @property
     def composite_tier(self) -> str:
-        domain_tiers = [d.tier for d in self.domains.values()]
-        composite = "Explorer"
-        for tier in TIER_ORDER:
-            tier_idx = TIER_ORDER.index(tier)
-            qualifying = sum(
-                1 for t in domain_tiers
-                if TIER_ORDER.index(t) >= tier_idx
-            )
-            if qualifying >= 4:
-                composite = tier
-            else:
-                break
-        return composite
+        return _compute_composite_tier([d.tier for d in self.domains.values()])
 
     def report(self) -> dict:
         return {
