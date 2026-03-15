@@ -254,13 +254,13 @@ def print_report(ev: EvaluatorEvaluation):
     r = ev.report()
     print(f"\n{'='*60}")
     print(f"  {r['evaluation_name']}")
-    print(f"  Composite : {TIER_ICONS.get(r['composite_tier'], '')} {r['composite_tier']}")
+    print(f"  Composite : {TIER_ICONS.get(r['composite_tier'], r['composite_tier'])}")
     print(f"  Score     : {r['overall_score_pct']}%  Coverage: {r['overall_coverage_pct']}%  Automation: {r['overall_automation_pct']}%")
     print(f"  {'Domain':<30} {'Coverage':>9} {'Auto':>6} {'Tier'}")
     print(f"  {'-'*55}")
     for d in r["domains"].values():
-        icon = TIER_ICONS.get(d["tier"], "")
-        print(f"  {d['name']:<30} {d['coverage_rate_pct']:>7.1f}%  {d['automation_rate_pct']:>4.1f}%  {icon} {d['tier']}")
+        icon = TIER_ICONS.get(d["tier"], d["tier"])
+        print(f"  {d['name']:<30} {d['coverage_rate_pct']:>7.1f}%  {d['automation_rate_pct']:>4.1f}%  {icon}")
 
 
 if __name__ == "__main__":

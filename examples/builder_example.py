@@ -84,17 +84,17 @@ def print_builder_report(ev: BuilderEvaluation):
     print(f"\n{'='*65}")
     print(f"  {r['evaluation_name']}")
     print(f"  Program Score : {r['program_score']:.2f}/9.00   "
-          f"Composite: {TIER_ICONS.get(r['composite_tier'], '')} {r['composite_tier']}")
+          f"Composite: {TIER_ICONS.get(r['composite_tier'], r['composite_tier'])}")
     print()
     for d in r["domains"].values():
         print(f"  {d['name']}")
         print(f"  {'Action':<35} {'T':>3} {'C':>3} {'I':>3} {'Score':>6} {'Tier'}")
         print(f"  {'-'*60}")
         for a in d["actions"]:
-            icon = TIER_ICONS.get(a["tier"], "")
+            icon = TIER_ICONS.get(a["tier"], a["tier"])
             print(
                 f"  {a['name']:<35} {a['T']:>3} {a['C']:>3} {a['I']:>3} "
-                f"{a['score']:>6}  {icon} {a['tier']}"
+                f"{a['score']:>6}  {icon}"
             )
 
 
