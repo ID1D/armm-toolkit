@@ -30,6 +30,8 @@ This repository implements the ARMM framework as a practical open-source toolkit
 
 ## What is ARMM?
 
+![ARMM](images/ARMM_1.webp)
+
 ARMM is a structured scoring system for evaluating what an AI SOC solution can actually do in the **response layer** — not just analysis or alerting, but the ability to take action.
 
 > *"SOAR gave us arms without brains. The first wave of AI SOC products gave us brains without arms. The products that will win this market are the ones that connect both. ARMM gives you a way to measure how far along that connection is."*
@@ -58,6 +60,8 @@ ARMM is a structured scoring system for evaluating what an AI SOC solution can a
 ## Scoring Methodology
 
 ### Evaluator Mode — Side-by-side product comparison
+
+images/Evaluator.webp
 
 Score each capability on a 5-level scale:
 
