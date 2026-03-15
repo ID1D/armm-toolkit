@@ -61,7 +61,7 @@ ARMM is a structured scoring system for evaluating what an AI SOC solution can a
 
 ### Evaluator Mode — Side-by-side product comparison
 
-images/Evaluator.webp
+![Evaluator](images/Evaluator.webp)
 
 Score each capability on a 5-level scale:
 
