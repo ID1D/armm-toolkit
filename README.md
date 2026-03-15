@@ -6,7 +6,13 @@ A practical Python toolkit for scoring and comparing AI SOC solutions using the 
 
 ## Credits
 
-**ARMM was created by:**
+**Toolkit implementation by:**
+
+| Author | GitHub |
+|--------|--------|
+| Diego Andrade | [@ID1D](https://github.com/ID1D) |
+
+**ARMM framework created by:**
 
 | Author | Profile |
 |--------|---------|
